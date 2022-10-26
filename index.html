@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" href="style.css">
+
+        <script src="main.js"></script>
+
+        <title>Random Color Picker</title>
+    </head>
+
+    <body>
+
+        <div class="container">
+
+            <!-- color display section -->
+            <section class="section">
+                <div class="section_header">
+                    <h3 class="section_title">Display Color</h3>
+                    <button class="section_header_action">Random Color</button>
+                </div>
+
+                <div class="divider"></div>
+
+                <div class="display_color"></div>
+            </section>
+
+            <!-- color copy or change section -->
+            <section class="section">
+                <div class="section_header">
+                    <h3 class="section_title">Change & Copy Color</h3>
+                    <button class="section_header_action">Copy to Clipboard</button>
+                </div>
+
+                <div class="divider"></div>
+
+                <!-- color copy mode selection-->
+                <div class="copy_mode">
+                    <h6 class="copy_mode_title">Select Copy Mode</h6>
+
+                    <div class="copy_inputs_group">
+                        <div class="copy_mode_input">
+                            <input type="radio" name="color_mode" id="color_mode_rgb" checked>
+                            <label for="color_mode_rgb">RGB</label>
+                        </div>
+
+                        <div class="copy_mode_input">
+                            <input type="radio" name="color_mode" id="color_mode_hex" checked>
+                            <label for="color_mode_hex">HEX</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- selected color code display -->
+                <div class="select_color_code">
+                    <div class="rgb_input_group">
+                        <label for="rgb_input" class="copy_mode_title">RGB</label>
+
+                        <input type="text" id="rgb_input" class="text_input" placeholder="rgb(221, 222, 238)" disabled>
+
+                    </div>
+
+                    <div class="hex_input_group">
+                        <label for="hex_input" class="copy_mode_title">HEX</label>
+
+                        <input type="text" id="hex_input" class="text_input hex_input" placeholder="dddeee">
+
+                        <div class="hex_icon">#</div>
+                    </div>
+                </div>
+
+                <!-- rgb color adjust -->
+                <div class="rgb_color_ranges">
+                    <h6 class="copy_mode_title">Adjust RGB Colors</h6>
+
+                    <div class="color_ranges_group">
+
+                        <!-- Red color range -->
+                        <div>
+                            <div class="ranges_label_group">
+                                <p class="red_label">Red</p>
+                                <p id="color_range_red_label">221</p>
+                            </div>
+
+                            <input type="range" class="color_range" id="color_range_red" min="0" max="255" value="221">
+                        </div>
+
+                        <!-- Green color range -->
+                        <div>
+                            <div class="ranges_label_group">
+                                <p class="green_label">Green</p>
+                                <p id="color_range_green_label">222</p>
+                            </div>
+
+                            <input type="range" class="color_range" id="color_range_green" min="0" max="255"
+                                value="222">
+                        </div>
+
+                        <!-- Blue color range -->
+                        <div>
+                            <div class="ranges_label_group">
+                                <p class="blue_label">Blue</p>
+                                <p id="color_range_blue_label">238</p>
+                            </div>
+
+                            <input type="range" class="color_range" id="color_range_blue" min="0" max="255" value="238">
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+        </div>
+    </body>
+
+</html>

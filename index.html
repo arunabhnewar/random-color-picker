@@ -26,7 +26,7 @@
 
                 <div class="divider"></div>
 
-                <div class="display_color"></div>
+                <div class="display_color" id="color-display"></div>
             </section>
 
             <!-- color copy or change section -->
@@ -60,14 +60,14 @@
                     <div class="rgb_input_group">
                         <label for="rgb_input" class="copy_mode_title">RGB</label>
 
-                        <input type="text" id="rgb_input" class="text_input" placeholder="rgb(221, 222, 238)" disabled>
+                        <input type="text" id="input-rgb" class="text_input" placeholder="rgb(221, 222, 238)" disabled>
 
                     </div>
 
                     <div class="hex_input_group">
                         <label for="hex_input" class="copy_mode_title">HEX</label>
 
-                        <input type="text" id="hex_input" class="text_input hex_input" placeholder="dddeee">
+                        <input type="text" id="input-hex" class="text_input hex_input" placeholder="dddeee">
 
                         <div class="hex_icon">#</div>
                     </div>
@@ -83,20 +83,20 @@
                         <div>
                             <div class="ranges_label_group">
                                 <p class="red_label">Red</p>
-                                <p id="color_range_red_label">221</p>
+                                <p id="color-range-red-label">221</p>
                             </div>
 
-                            <input type="range" class="color_range" id="color_range_red" min="0" max="255" value="221">
+                            <input type="range" class="color_range" id="color-range-red" min="0" max="255" value="221">
                         </div>
 
                         <!-- Green color range -->
                         <div>
                             <div class="ranges_label_group">
                                 <p class="green_label">Green</p>
-                                <p id="color_range_green_label">222</p>
+                                <p id="color-range-green-label">222</p>
                             </div>
 
-                            <input type="range" class="color_range" id="color_range_green" min="0" max="255"
+                            <input type="range" class="color_range" id="color-range-green" min="0" max="255"
                                 value="222">
                         </div>
 
@@ -104,10 +104,10 @@
                         <div>
                             <div class="ranges_label_group">
                                 <p class="blue_label">Blue</p>
-                                <p id="color_range_blue_label">238</p>
+                                <p id="color-range-blue-label">238</p>
                             </div>
 
-                            <input type="range" class="color_range" id="color_range_blue" min="0" max="255" value="238">
+                            <input type="range" class="color_range" id="color-range-blue" min="0" max="255" value="238">
                         </div>
                     </div>
 

@@ -129,10 +129,10 @@ body {
 
 .hex_icon {
     position: absolute;
-    top: 22px;
-    left: 1px;
+    top: 25px;
+    left: 8px;
     background: #dddeee;
-    padding: 1px 8px;
+    padding: 1px 4px;
 }
 
 .hex_input_group input {

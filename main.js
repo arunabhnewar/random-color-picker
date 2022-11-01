@@ -11,12 +11,23 @@ window.onload = () => {
 // main or boot function, this function will take care of getting all the DOM references
 function main() {
 
+    // DOM Reference
     const randomGenerateColorBtn = document.getElementById("random-generate-color");
     const colorHexInput = document.getElementById("input-hex");
+    const redColorRange = document.getElementById("color-range-red");
+    const greenColorRange = document.getElementById("color-range-green");
+    const blueColorRange = document.getElementById("color-range-blue");
 
+
+
+    // Event listeners
     randomGenerateColorBtn.addEventListener('click', handleGenerateRandomColorBtn);
 
     colorHexInput.addEventListener('keyup', handleColorHexInput);
+
+    redColorRange.addEventListener("change", handleColorRange(redColorRange, greenColorRange, blueColorRange));
+    greenColorRange.addEventListener("change", handleColorRange(redColorRange, greenColorRange, blueColorRange));
+    blueColorRange.addEventListener("change", handleColorRange(redColorRange, greenColorRange, blueColorRange));
 
 
     // copyBtn.addEventListener('click', function () {
@@ -60,7 +71,6 @@ function main() {
 
 
 // Event handlers
-
 function handleGenerateRandomColorBtn() {
     const color = generateColorDecimal();
     updateColorCodes(color);
@@ -78,6 +88,20 @@ function handleColorHexInput(e) {
             const color = hexToDecimalColors(hexColor);
             updateColorCodes(color);
         }
+    }
+}
+
+
+function handleColorRange(redColorRange, greenColorRange, blueColorRange) {
+
+
+    return function () {
+        const color = {
+            red: parseInt(redColorRange.value),
+            green: parseInt(greenColorRange.value),
+            blue: parseInt(blueColorRange.value),
+        };
+        updateColorCodes(color)
     }
 }
 

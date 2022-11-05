@@ -33,7 +33,7 @@
             <section class="section">
                 <div class="section_header">
                     <h3 class="section_title">Change & Copy Color</h3>
-                    <button class="section_header_action">Copy to Clipboard</button>
+                    <button class="section_header_action" id="copy_to_clipboard">Copy to Clipboard</button>
                 </div>
 
                 <div class="divider"></div>
@@ -44,12 +44,12 @@
 
                     <div class="copy_inputs_group">
                         <div class="copy_mode_input">
-                            <input type="radio" name="color_mode" id="color_mode_rgb" checked>
+                            <input type="radio" name="color_mode" id="color_mode_rgb" value="rgb">
                             <label for="color_mode_rgb">RGB</label>
                         </div>
 
                         <div class="copy_mode_input">
-                            <input type="radio" name="color_mode" id="color_mode_hex" checked>
+                            <input type="radio" name="color_mode" id="color_mode_hex" value="hex" checked>
                             <label for="color_mode_hex">HEX</label>
                         </div>
                     </div>

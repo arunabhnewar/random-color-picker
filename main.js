@@ -1,10 +1,10 @@
 // Global
-// let div = mull;
+// let toastContent = mull;
 
 
 // Onload handler
 window.onload = () => {
-    main()
+    main();
 }
 
 
@@ -17,6 +17,9 @@ function main() {
     const redColorRange = document.getElementById("color-range-red");
     const greenColorRange = document.getElementById("color-range-green");
     const blueColorRange = document.getElementById("color-range-blue");
+    const copyToClipboard = document.getElementById("copy_to_clipboard");
+    const colorModeRadios = document.getElementsByName("color_mode");
+
 
 
 
@@ -29,6 +32,24 @@ function main() {
     greenColorRange.addEventListener("change", handleColorRange(redColorRange, greenColorRange, blueColorRange));
     blueColorRange.addEventListener("change", handleColorRange(redColorRange, greenColorRange, blueColorRange));
 
+    copyToClipboard.addEventListener("click", function () {
+        const radioMode = checkValueFromRadios(colorModeRadios);
+
+        if (radioMode === null) {
+            throw new Error("Your radio input invalid")
+        }
+
+        if (radioMode === 'hex') {
+            const hexColor = document.getElementById("input-hex").value;
+
+            window.navigator.clipboard.writeText(`#${hexColor}`);
+        } else {
+            const rgbColor = document.getElementById("input-rgb").value;
+
+            window.navigator.clipboard.writeText(rgbColor);
+        }
+
+    })
 
     // copyBtn.addEventListener('click', function () {
     //     window.navigator.clipboard.writeText(`#${output.value}`);
@@ -45,24 +66,6 @@ function main() {
     //         alert('Invalid Color Code')
     //     }
     // });
-
-
-    // copyBtn2.addEventListener('click', function () {
-    //     window.navigator.clipboard.writeText(`${output2.value}`);
-
-    //     if (div !== null) {
-    //         div.remove();
-    //         div = null
-    //     }
-
-    //     // Step 11 - Prevent copying hex code if it is not valid
-    //     if (isHexValid(output2.value)) {
-    //         toastMessage(`${output2.value} copied!!`)
-    //     } else {
-    //         alert('Invalid Color Code')
-    //     }
-    // });
-
 
 
 
@@ -107,25 +110,53 @@ function handleColorRange(redColorRange, greenColorRange, blueColorRange) {
 
 
 // DOM Function
+
+/**
+ * Generate a dynamic DOM element to show a toast message
+ * @param {string} msg
+ */
+
 function toastMessage(msg) {
-    div = document.createElement('div');
-    div.innerText = msg;
-    div.className = 'toast-message toast-message-slide-in';
+    toastContent = document.createElement('div');
+    toastContent.innerText = msg;
+    toastContent.className = 'toast-message toast-message-slide-in';
 
 
-    div.addEventListener('click', function () {
-        div.classList.remove('toast-message-slide-in');
-        div.classList.add('toast-message-slide-out');
+    toastContent.addEventListener('click', function () {
+        toastContent.classList.remove('toast-message-slide-in');
+        toastContent.classList.add('toast-message-slide-out');
 
-        div.addEventListener('animationend', function () {
+        toastContent.addEventListener('animationend', function () {
 
-            div.remove();
-            div = null;
+            toastContent.remove();
+            toastContent = null;
         })
     })
 
-    document.body.appendChild(div)
+    document.body.appendChild(toastContent)
 }
+
+
+
+/**
+ * find the checked elements from a list of radio buttons
+ * @param {Array} nodes
+ * @returns {string | null}
+ */
+
+function checkValueFromRadios(nodes) {
+    let valueChecked = null;
+    for (let i = 0; i < nodes.length; i++) {
+
+        if (nodes[i].checked) {
+            valueChecked = nodes[i].value;
+            break;
+        }
+    }
+    return valueChecked;
+}
+
+
 
 
 /**

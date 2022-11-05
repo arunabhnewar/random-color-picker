@@ -83,6 +83,11 @@ body {
 .copy_mode_title {
     font-size: 14px;
     color: #343f49;
+    user-select: none;
+}
+
+label {
+    user-select: none;
 }
 
 .copy_mode_input {

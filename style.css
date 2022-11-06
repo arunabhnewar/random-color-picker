@@ -150,7 +150,7 @@ label {
     font-size: 16px;
     width: 250px;
     background: #FFF;
-    box-shadow: 0px 4px 6px 2px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 4px 6px 2px rgba(241, 241, 241, 0.2);
     margin-left: 7px;
 }
 
@@ -186,4 +186,47 @@ label {
 
 .color_range {
     color: #ff6733;
+}
+
+/*============= Toast Message ==============*/
+.toast-message{
+    top: 32px;
+    right: 32px;
+    background: #4285F4;
+    color: #FFF;
+    border: 1px solid #4285F4;
+    position: fixed;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+    z-index: 999;
+    box-shadow: 0px 4px 8px 4px rgba(0,0,0,0.2);
+}
+
+.toast-message-slide-in {
+    animation: toast-animation-in 0.6s ease-in;
+}
+
+.toast-message-slide-out{
+    animation: toast-animation-out 0.6s ease-in;
+}
+
+@keyframes toast-animation-in {
+    from{
+        transform: translateX(200px);
+        opacity: 0;
+    }to {
+        transform: translateX(0px);
+        opacity: 1;
+    }
+}
+
+@keyframes toast-animation-out {
+    from{
+        transform: translateX(0px);
+        opacity: 1;
+    }to {
+        transform: translateX(200px);
+        opacity: 0;
+    }
 }

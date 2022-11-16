@@ -16,7 +16,7 @@ body {
 .container {
     background: #FFFFFF;
     width: 600px;
-    margin: 50px auto;
+    margin: 10px auto;
     padding: 15px;
     border-radius: 4px;
 }
@@ -24,7 +24,7 @@ body {
 
 /*======== color display section =============*/
 .section {
-    margin-bottom: 16px;
+    margin-bottom: 5px;
 }
 
 .section_header {
@@ -53,7 +53,7 @@ body {
     background: #dddeee;
     width: 99%;
     height: 1px;
-    margin: 5px 0 10px;
+    margin: 5px 0;
 }
 
 .display_color {
@@ -62,7 +62,7 @@ body {
     border-radius: 5px;
     border: 1px solid #dddeee;
     background: #dddeee;
-    margin: 15px 0 30px 0;
+    margin: 15px 0;
     
 }
 
@@ -106,7 +106,7 @@ label {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 22px;
-	margin: 16px 0;
+	margin: 16px 0 5px 0;
 }
 
 .rgb_input_group label, .hex_input_group label {
@@ -157,7 +157,7 @@ label {
 
 /*============== rgb color adjust ==============*/
 .rgb_color_ranges {
-    margin-top: 32px;
+    margin-top: 22px;
 
 }
 
@@ -190,7 +190,7 @@ label {
 
 /*============= Toast Message ==============*/
 .toast-message{
-    top: 32px;
+    top: 15px;
     right: 32px;
     background: #4285F4;
     color: #FFF;
@@ -229,4 +229,28 @@ label {
         transform: translateX(200px);
         opacity: 0;
     }
+}
+
+
+/*============= Preset Colors =================*/
+.preset_colors {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 10px;
+}
+
+
+.single_colorBox {
+    cursor: pointer;
+    border-radius: 5px;
+    height: 40px;
+    width: 80px;
+    transition: all 0.5s ;
+    box-shadow: 0px 2px 4px 2px rgba(0, 0, 0, 0.2);
+}
+
+.single_colorBox:hover {
+    opacity: 0.9;
 }

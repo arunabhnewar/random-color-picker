@@ -6,11 +6,50 @@ const defaultColor = {
     blue: 0,
 };
 
+
+
+// Background Sound
+const backgroundCopySound = new Audio('./what-a-fuck-120320.mp3')
+
+
+
+// Preset Colors
+const defaultPresetColors = [
+    "#94FE7A",
+    "#6380D5",
+    "#4A071B",
+    "#E826D0",
+    "#BCE781",
+    "#698011",
+    "#2B5F82",
+    "#644552",
+    "#AD1F3E",
+    "#8E1400",
+    "#C230A1",
+    "#321477",
+    "#F02D8E",
+    "#3C6400",
+    "#6EFA84",
+    "#8B225D",
+    "#9FBABA",
+    "#81CF19"
+]
+
+
+
+
 // Onload handler
 window.onload = () => {
     main();
-    updateColorCodes(defaultColor)
+    updateColorCodes(defaultColor);
+
+    // display preset colors
+    presetColorBoxesDisplay(
+        document.getElementById('preset_colors'),
+        defaultPresetColors
+    );
 }
+
 
 
 // main or boot function, this function will take care of getting all the DOM references
@@ -23,7 +62,7 @@ function main() {
     const greenColorRange = document.getElementById("color-range-green");
     const blueColorRange = document.getElementById("color-range-blue");
     const copyToClipboard = document.getElementById("copy_to_clipboard");
-
+    const presetColorsPuppy = document.getElementById("preset_colors")
 
 
 
@@ -37,7 +76,9 @@ function main() {
     greenColorRange.addEventListener("change", handleColorRange(redColorRange, greenColorRange, blueColorRange));
     blueColorRange.addEventListener("change", handleColorRange(redColorRange, greenColorRange, blueColorRange));
 
-    copyToClipboard.addEventListener("click", handleCopyToClipboard)
+    copyToClipboard.addEventListener("click", handleCopyToClipboard);
+
+    presetColorsPuppy.addEventListener("click", handlePresetColorsPuppy)
 }
 
 
@@ -78,7 +119,6 @@ function handleColorRange(redColorRange, greenColorRange, blueColorRange) {
 }
 
 
-
 function handleCopyToClipboard() {
     const colorModeRadios = document.getElementsByName("color_mode");
     const radioMode = checkValueFromRadios(colorModeRadios);
@@ -115,6 +155,15 @@ function handleCopyToClipboard() {
         }
     }
 
+}
+
+
+function handlePresetColorsPuppy(e) {
+    if (e.target.className === "single_colorBox") {
+        window.navigator.clipboard.writeText(e.target.getAttribute("data-color"));
+        backgroundCopySound.volume = 0.5;
+        backgroundCopySound.play();
+    }
 }
 
 
@@ -197,8 +246,43 @@ function updateColorCodes(color) {
 }
 
 
-// Utilities Function
 
+
+/**
+ * create a div element with class name color-box
+ * @param {string} color : ;
+ * @returns {object}
+ */
+function singleColorBoxGenerator(color) {
+    const div = document.createElement("div");
+    div.className = "single_colorBox";
+    div.style.background = color;
+    div.style.border = `1px solid ${color}`
+    div.setAttribute("data-color", color);
+
+    return div;
+}
+
+
+
+
+/**
+ * this function will create and append new color boxes to it's parent
+ * @param {object} parent
+ * @param {Array} colors
+ */
+function presetColorBoxesDisplay(puppy, colors) {
+    colors.forEach(color => {
+        const colorBox = singleColorBoxGenerator(color);
+        puppy.appendChild(colorBox);
+    })
+}
+
+
+
+
+
+// Utilities Function
 /**
  * generate and return an object of three color decimal values
  * @returns {object}}
@@ -217,6 +301,9 @@ function generateColorDecimal() {
 }
 
 
+
+
+
 /**
  * take a color object of three decimal values and return a hexadecimal color code
  * @param {object} color
@@ -233,6 +320,7 @@ function generateHexColor({ red, green, blue }) {
 }
 
 
+
 /**
  * take a color object of three decimal values and return a rgb color code
  * @param {object} color
@@ -242,6 +330,7 @@ function generateHexColor({ red, green, blue }) {
 function generateRGBColor({ red, green, blue }) {
     return `rgb(${red}, ${green}, ${blue})`;
 }
+
 
 
 /**
@@ -261,6 +350,7 @@ function hexToDecimalColors(hex) {
         blue,
     };
 }
+
 
 
 /**

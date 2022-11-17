@@ -37,6 +37,10 @@ const defaultPresetColors = [
 
 
 
+// Custom Colors
+const customColors = []
+
+
 
 // Onload handler
 window.onload = () => {
@@ -61,9 +65,10 @@ function main() {
     const redColorRange = document.getElementById("color-range-red");
     const greenColorRange = document.getElementById("color-range-green");
     const blueColorRange = document.getElementById("color-range-blue");
+    const saveToCustomBtn = document.getElementById("save_to_custom");
     const copyToClipboard = document.getElementById("copy_to_clipboard");
-    const presetColorsPuppy = document.getElementById("preset_colors")
-
+    const presetColorsPuppy = document.getElementById("preset_colors");
+    const customColorsPallet = document.getElementById("custom_colors");
 
 
 
@@ -72,11 +77,15 @@ function main() {
 
     colorHexInput.addEventListener('keyup', handleColorHexInput);
 
+
     redColorRange.addEventListener("change", handleColorRange(redColorRange, greenColorRange, blueColorRange));
     greenColorRange.addEventListener("change", handleColorRange(redColorRange, greenColorRange, blueColorRange));
     blueColorRange.addEventListener("change", handleColorRange(redColorRange, greenColorRange, blueColorRange));
 
+
+    saveToCustomBtn.addEventListener("click", handleSaveToCustomColorBtn(customColorsPallet, colorHexInput));
     copyToClipboard.addEventListener("click", handleCopyToClipboard);
+
 
     presetColorsPuppy.addEventListener("click", handlePresetColorsPuppy)
 }
@@ -166,6 +175,16 @@ function handlePresetColorsPuppy(e) {
     }
 }
 
+
+function handleSaveToCustomColorBtn(customColorsPallet, inputHex) {
+
+    return function () {
+        customColors.push(`#${inputHex.value}`);
+
+        removeChildren(customColorsPallet);
+        presetColorBoxesDisplay(customColorsPallet, customColors)
+    }
+}
 
 // DOM Function
 
@@ -279,6 +298,18 @@ function presetColorBoxesDisplay(puppy, colors) {
 }
 
 
+
+/**
+ * remove all children from parent
+ * @param {object} parent
+ */
+function removeChildren(parent) {
+    let child = parent.lastElementChild;
+    while (child) {
+        parent.removeChild(child);
+        child = parent.lastElementChild;
+    }
+}
 
 
 

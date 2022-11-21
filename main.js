@@ -38,7 +38,7 @@ const defaultPresetColors = [
 
 
 // Custom Colors
-const customColors = []
+let customColors = new Array(18)
 
 
 
@@ -52,6 +52,13 @@ window.onload = () => {
         document.getElementById('preset_colors'),
         defaultPresetColors
     );
+
+    const customColorsStorage = localStorage.getItem('custom_colors');
+    if (customColorsStorage) {
+
+        customColors = JSON.parse(customColorsStorage)
+        presetColorBoxesDisplay(document.getElementById('custom_colors'), customColors)
+    }
 }
 
 
@@ -179,7 +186,18 @@ function handlePresetColorsPuppy(e) {
 function handleSaveToCustomColorBtn(customColorsPallet, inputHex) {
 
     return function () {
-        customColors.push(`#${inputHex.value}`);
+        const color = `#${inputHex.value}`;
+        if (customColors.includes(color)) {
+            alert("Aleready in your save list.");
+            return;
+        }
+
+        customColors.unshift(color);
+        if (customColors.length > 18) {
+            customColors = customColors.slice(0, 18)
+        }
+
+        localStorage.setItem('custom_colors', JSON.stringify(customColors))
 
         removeChildren(customColorsPallet);
         presetColorBoxesDisplay(customColorsPallet, customColors)
@@ -290,10 +308,17 @@ function singleColorBoxGenerator(color) {
  * @param {object} parent
  * @param {Array} colors
  */
-function presetColorBoxesDisplay(puppy, colors) {
-    colors.forEach(color => {
-        const colorBox = singleColorBoxGenerator(color);
-        puppy.appendChild(colorBox);
+function presetColorBoxesDisplay(parent, colors) {
+    colors.forEach((color) => {
+
+        // const colorBox = singleColorBoxGenerator(color);
+        // parent.appendChild(colorBox);
+
+
+        if (isHexValid(color.slice(1))) {
+            const colorBox = singleColorBoxGenerator(color);
+            parent.appendChild(colorBox);
+        }
     })
 }
 
